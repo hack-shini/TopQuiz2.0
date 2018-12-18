@@ -20,14 +20,15 @@
         />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/activity_main_name_input"
         android:hint="Please, tape your name"
-        android:layout_margin="10dp"
-        android:padding="10dp"
+        android:maxLength="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-         />
+        android:layout_margin="10dp"
+
+        android:padding="10dp" />
 
     <Button
         android:layout_width="wrap_content"
