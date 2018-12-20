@@ -1,8 +1,8 @@
-package com.comenda.dimitri.topquiz;
+package com.comenda.dimitri.topquiz.Controller;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,11 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.comenda.dimitri.topquiz.Model.User;
+import com.comenda.dimitri.topquiz.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mWelcomeText;
     private EditText mNameInput;
     private Button mPlayButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         mWelcomeText = (TextView) findViewById(R.id.activity_main_welcome_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
+
+        final User mUser = new User();
 
         mPlayButton.setEnabled(false);
 
@@ -49,9 +55,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
+                mUser.setFirstName(mNameInput.getText().toString());
                 startActivity(gameActivity);
 
             }
+
+
+
+
         });
 
     }
