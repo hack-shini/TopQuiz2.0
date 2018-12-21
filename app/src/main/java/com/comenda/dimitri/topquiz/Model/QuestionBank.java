@@ -8,7 +8,7 @@ public class QuestionBank {
     private List<Question> mQuestionList;
     private int mnextQuestionIndex;
 
-    public QuestionBank(List<Question> questionList){
+    public QuestionBank(List<Question> questionList) {
         mQuestionList = questionList;
 
         // Shuffle questions
@@ -18,9 +18,9 @@ public class QuestionBank {
 
     }
 
-    public Question getQuestion(){
+    public Question getQuestion() {
 
-        if (mnextQuestionIndex == mQuestionList.size()){
+        if (mnextQuestionIndex == mQuestionList.size()) {
             mnextQuestionIndex = 0;
         }
 
