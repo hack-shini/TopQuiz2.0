@@ -2,8 +2,10 @@ package com.comenda.dimitri.topquiz.Controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comenda.dimitri.topquiz.Model.Question;
 import com.comenda.dimitri.topquiz.Model.QuestionBank;
@@ -11,7 +13,7 @@ import com.comenda.dimitri.topquiz.R;
 
 import java.util.Arrays;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mQuestionText;
     private Button mAnswer1Btn;
@@ -20,6 +22,9 @@ public class GameActivity extends AppCompatActivity {
     private Button mAnswer4Btn;
 
     private QuestionBank mQuestionBank;
+
+    private TextView mQuestionTextView;
+    private Question mCurrentQuestion;
 
 
     @Override
@@ -34,6 +39,23 @@ public class GameActivity extends AppCompatActivity {
         mAnswer4Btn = (Button) findViewById(R.id.activity_game_answer4_btn);
 
         mQuestionBank = this.generateQuestions();
+
+        mAnswer1Btn.setOnClickListener(this);
+        mAnswer1Btn.setTag(0);
+
+        mAnswer2Btn.setOnClickListener(this);
+        mAnswer2Btn.setTag(1);
+
+        mAnswer3Btn.setOnClickListener(this);
+        mAnswer3Btn.setTag(2);
+
+        mAnswer4Btn.setOnClickListener(this);
+        mAnswer4Btn.setTag(3);
+
+        mCurrentQuestion = mQuestionBank.getQuestion();
+        this.displayQuestion(mCurrentQuestion);
+
+
 
 
     }
@@ -77,4 +99,27 @@ public class GameActivity extends AppCompatActivity {
                 question7));
     }
 
+    private void displayQuestion(final Question question) {
+
+        mQuestionTextView.setText(question.getQuestion());
+        mAnswer1Btn.setText(question.getChoiceList().get(0));
+        mAnswer2Btn.setText(question.getChoiceList().get(1));
+        mAnswer3Btn.setText(question.getChoiceList().get(2));
+        mAnswer4Btn.setText(question.getChoiceList().get(3));
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int responseIndex = (int) v.getTag();
+
+        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
+            Toast.makeText(this, "Réponse correct", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Réponse incorrect !", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
 }
